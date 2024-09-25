@@ -1,7 +1,7 @@
 @charset "UTF-8";
 body {
 	background: #D6F8D6;
-    color: pink;
+    color: #92bbf0;
     font-size: medium;
 	text-align: center;
     font-family: 'Alkatra', cursive;
@@ -42,59 +42,54 @@ canvas {
 
 
 .text1 {
-  text-align:center;
- background-color: transparent;
-  color:#7FC6A4;
-  font-family:'Alkatra', cursive;
-  font-weight:500;
-  font-size:48px;
-  padding-top:5vh;
-  padding-bottom:48px;
-  padding-right:4vh;
-  height:30vh;
-  width: 35vh;
-	overflow:hidden;
-  -webkit-backface-visibility: hidden;
-  -webkit-perspective: 1000;
-  -webkit-transform: translate3d(0,0,0);
-}
-
-div {
-  display:inline-block;
-  overflow:hidden;
-  white-space:nowrap;
-}
-
-div:first-of-type {    /* For increasing performance 
-                       ID/Class should've been used. 
-                       For a small demo 
-                       it's okaish for now */
-  animation: showup 7s infinite;
-}
-
-div:last-of-type {
-  width:0px;
-  animation: reveal 7s infinite;
-}
-
-div:last-of-type span {
-  margin-left:-355px;
-  animation: slidein 7s infinite;
-}
-
-@keyframes showup {
-    0% {opacity:0;}
-    20% {opacity:1;}
-    80% {opacity:1;}
-    100% {opacity:0;}
-}
-
-@keyframes slidein {
-    0% { margin-left:-800px; }
-    20% { margin-left:-800px; }
-    35% { margin-left:0px; }
-    100% { margin-left:0px; }
-}
+    text-align: center;
+    background-color: transparent;
+    color: #7FC6A4;
+    font-family: 'Alkatra', cursive;
+    font-weight: 500;
+    font-size: 48px;
+    padding-top: 5vh;
+    padding-bottom: 48px;
+    padding-right: 4vh;
+    height: 30vh;
+    width: 35vh;
+    overflow: hidden;
+    -webkit-backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    -webkit-transform: translate3d(0, 0, 0);
+    display: inline-block;
+    white-space: nowrap;
+  }
+  
+  .text1:first-of-type {
+    animation: showup 7s infinite;
+  }
+  
+  .text1:last-of-type {
+    width: 0px;
+    animation: reveal 7s infinite;
+  }
+  
+  .text1:last-of-type span {
+    margin-left: -355px;
+    animation: slidein 7s infinite;
+  }
+  
+  /* Keyframes for animation */
+  @keyframes showup {
+    0% { opacity: 0; transform: translateY(100%); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  
+  @keyframes reveal {
+    0% { width: 0; }
+    100% { width: 100%; }
+  }
+  
+  @keyframes slidein {
+    0% { margin-left: -355px; }
+    100% { margin-left: 0; }
+  }
 
 @keyframes reveal {
     0% {opacity:0;width:0px;}
@@ -113,10 +108,54 @@ h1{
     
 }
 
+
 p {
   font-size:24px;
   color:#55505C;
   margin-top:24px;
   margin-left:200px ;
   margin-right: 200px;
+}
+
+.blog-posts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(2fr,1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.post {
+    background-color: #a2ec95;
+    padding: 20px;
+    border-radius: 10px;
+    transition: transform 0.3s, box-shadow 0.5s;
+}
+
+.post:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Hover animation */
+}
+
+a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 600px) {
+    img {
+        width: 100%; /* Make images responsive */
+    }
+
+    .navbar a {
+        font-size: 20px; /* Adjust navbar font size for smaller screens */
+    }
+
+    .text1 {
+        font-size: 36px; /* Adjust font size for text1 on smaller screens */
+    }
 }

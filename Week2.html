@@ -1,31 +1,73 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>My page</title>
     <link rel="stylesheet" href="style1.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Alkatra&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<body>
 
     <body>
-      <body>
         <div class="navbar">
-          <a href="index.html">HOME</a>
-          <a href="Week1.html">WEEK1 RESPONSE</a>
-          <a href="Week2.html">WEEK2 RESPONSE</a>
+            <a href="index.html">HOME</a>
+            <a href="Week1.html">WEEK1 RESPONSE</a>
+            <a href="Week2.html">WEEK2 RESPONSE</a>
+            <a href="Week4.html">Ideation</a>
         </div>
         <h1>RESPONSE2</h1>
-        <p>An interesting one-page static website that stands out to me is <a href="https://loopstudios.com/">"Loop Studios Landing Page"</a>. 
-            It’s a visually striking example of a minimalist design with smooth animations and responsive 
-            layouts.<p>
-        <br/>
+        <p>An interesting one-page static website that stands out to me is <a href="https://loopstudios.com/">"Loop
+                Studios Landing Page"</a>.
+            It’s a visually striking example of a minimalist design with smooth animations and responsive
+            layouts.</p>
+        <br />
         <h2> how those concept can help developer create the *key features* of Loop Studios</h2>
-        <p>Manipulating a DOM node’s inner HTML: Used to dynamically update content in sections like the hero banner or project showcase.
-        <br/>Manipulating a DOM node’s attributes: Key for features like the hamburger menu’s open/close functionality, responsive image changes, 
-        and scroll-triggered animations.<br/>
-        Returning element vs. array of elements: Essential when handling single elements like the hamburger icon versus multiple elements like a list of navigation links or project items.
-        <br/>Selecting nodes from the DOM with jQuery: Helps apply interactive effects, especially to multiple elements like the social media icons in the footer.</p>
+        <p>Manipulating a DOM node’s inner HTML: Used to dynamically update content in sections like the hero banner or
+            project showcase.
+            <br />Manipulating a DOM node’s attributes: Key for features like the hamburger menu’s open/close
+            functionality, responsive image changes,
+            and scroll-triggered animations.<br />
+            Returning element vs. array of elements: Essential when handling single elements like the hamburger icon
+            versus multiple elements like a list of navigation links or project items.
+            <br />Selecting nodes from the DOM with jQuery: Helps apply interactive effects, especially to multiple
+            elements like the social media icons in the footer.
+        </p>
+        <!-- Canvas for background -->
+        <canvas id="bgCanvas"></canvas>
 
-   </body>
+        <!-- JavaScript for interactive canvas background -->
+        <script>
+            const canvas = document.getElementById('bgCanvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            // Resize canvas if the window is resized
+            window.addEventListener('resize', function () {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
+
+            // Draw circles that respond to mouse movement
+            window.addEventListener('mousemove', function (event) {
+                const x = event.clientX;
+                const y = event.clientY;
+                drawCircle(x, y);
+            });
+
+            // Draw a simple circle on the canvas
+            function drawCircle(x, y) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear previous drawings
+                ctx.beginPath();
+                ctx.arc(x, y, 50, 0, Math.PI * 2); // Draw circle at mouse location
+                ctx.fillStyle = 'rgba(76, 175, 80, 0.5)';
+                ctx.fill();
+                ctx.closePath();
+            }
+        </script>
+    </body>
 
 </html>
