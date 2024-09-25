@@ -1,38 +1,76 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>My page</title>
     <link rel="stylesheet" href="style1.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Alkatra&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<body>
 
     <body>
-      <body>
         <div class="navbar">
-          <a href="index.html">HOME</a>
-          <a href="Week1.html">WEEK1 RESPONSE</a>
-          <a href="Week2.html">WEEK2 RESPONSE</a>
+            <a href="index.html">HOME</a>
+            <a href="Week1.html">WEEK1 RESPONSE</a>
+            <a href="Week2.html">WEEK2 RESPONSE</a>
+            <a href="Week4.html">Ideation</a>
         </div>
-    
-		<h1>RESPONSE1</h1>
-		<p>The index page of ORAL.pub is designed with a minimalist aesthetic, 
-        featuring an interactive and dynamic layout. 
-        It showcases the latest digital poetry and art projects, 
-        emphasizing the experimental and innovative nature of the content. 
-        The site also offers navigation to different categories and past issues, 
-        inviting exploration of web-native creativity. <br/>
-        ORAL.pub values spaces that provoke thought and emotion through unexpected, 
-        innovative uses of technology, whether through simple HTML/CSS or cutting-edge techniques. 
-        I agree with the idea that the platform is dedicated to creative expression rather than technical expertise, 
-        and I think it's this idea that makes the platform such a unique and exciting space in the digital realm.</br> 
-        What strikes me most about this site is its index page, 
-        which is seemingly cluttered, yet highly distinctive and full of mouse interactivity. 
-        It reminds me of what I've learned about p5.js.</p>
-	  <img src="SHp5js.png" width="500px" alt="" >  
-		<br/>
-     
-		<a href="index.html">back to home</a>
-   </body>
+
+        <h1>RESPONSE1</h1>
+        <p>The index page of ORAL.pub is designed with a minimalist aesthetic,
+            featuring an interactive and dynamic layout.
+            It showcases the latest digital poetry and art projects,
+            emphasizing the experimental and innovative nature of the content.
+            The site also offers navigation to different categories and past issues,
+            inviting exploration of web-native creativity. <br />
+            ORAL.pub values spaces that provoke thought and emotion through unexpected,
+            innovative uses of technology, whether through simple HTML/CSS or cutting-edge techniques.
+            I agree with the idea that the platform is dedicated to creative expression rather than technical expertise,
+            and I think it's this idea that makes the platform such a unique and exciting space in the digital
+            realm.</br>
+            What strikes me most about this site is its index page,
+            which is seemingly cluttered, yet highly distinctive and full of mouse interactivity.
+            It reminds me of what I've learned about p5.js.</p>
+        <img src="SHp5js.png" width="500px" alt="">
+        <br />
+
+        <a href="index.html" target="_blank">back to home</a>
+        <!-- Canvas for background -->
+        <canvas id="bgCanvas"></canvas>
+
+        <!-- JavaScript for interactive canvas background -->
+        <script>
+            const canvas = document.getElementById('bgCanvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            // Resize canvas if the window is resized
+            window.addEventListener('resize', function () {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
+
+            // Draw circles that respond to mouse movement
+            window.addEventListener('mousemove', function (event) {
+                const x = event.clientX;
+                const y = event.clientY;
+                drawCircle(x, y);
+            });
+
+            // Draw a simple circle on the canvas
+            function drawCircle(x, y) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear previous drawings
+                ctx.beginPath();
+                ctx.arc(x, y, 50, 0, Math.PI * 2); // Draw circle at mouse location
+                ctx.fillStyle = 'rgba(76, 175, 80, 0.5)';
+                ctx.fill();
+                ctx.closePath();
+            }
+        </script>
+    </body>
 
 </html>
