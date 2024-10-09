@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Circular Text Animation</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        canvas {
+            border: 2px solid #333;
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="newCanvas" width="500" height="500" onclick="handleClick();"></canvas>
+
+    <script>
+        // Get canvas element and context
+        var canvas = document.getElementById("newCanvas");
+        var ctx = canvas.getContext("2d");
+        ctx.font = "20px Arial";
+        ctx.textAlign = "center";
+
+        // Text data and initial variables
+        var text = "Circles of Words";
+        var characters = [];
+        var radius = 150;
+        var centerX = canvas.width / 2;
+        var centerY = canvas.height / 2;
+        var speed = 0.05;
+        var gravity = 0.2;
+        var clicked = false;
+
+        // Create character objects with angle and initial positions
+        for (var i = 0; i < text.length; i++) {
+            characters.push({
+                char: text[i],
+                angle: (i / text.length) * 2 * Math.PI,
+                x: centerX + radius * Math.cos((i / text.length) * 2 * Math.PI),
+                y: centerY + radius * Math.sin((i / text.length) * 2 * Math.PI),
+                xSpeed: 0,
+                ySpeed: 0,
+                color: "black"
+            });
+        }
+
+        // Update the positions of the characters in circular motion
+        function updatePositions() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            for (var i = 0; i < characters.length; i++) {
+                var charObj = characters[i];
+
+                if (!clicked) {
+                    // Circular motion around center
+                    charObj.angle += speed;
+                    charObj.x = centerX + radius * Math.cos(charObj.angle);
+                    charObj.y = centerY + radius * Math.sin(charObj.angle);
+                } else {
+                    // Drop effect when clicked
+                    charObj.ySpeed += gravity;
+                    charObj.y += charObj.ySpeed;
+                }
+
+                // Draw the character
+                ctx.fillStyle = charObj.color;
+                ctx.fillText(charObj.char, charObj.x, charObj.y);
+            }
+        }
+
+        // Handle the click event to trigger the falling effect
+        function handleClick() {
+            clicked = true;
+            
+            for (var i = 0; i < characters.length; i++) {
+                characters[i].ySpeed = Math.random() * -10 - 5; // Random initial upward speed
+                characters[i].color = getRandomColor(); // Change color on click
+            }
+        }
+
+        // Function to get a random color
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        // Call the update function every 50 milliseconds
+        setInterval(updatePositions, 50);
+    </script>
+
+</body>
+</html>
