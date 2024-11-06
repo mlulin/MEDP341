@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>API</title>
+<link rel="stylesheet" href="SearchBar.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alkatra&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+	<div class="navbar">
+        <a href="index.html">HOME</a>
+        <a href="Week1.html">WEEK1 RESPONSE</a>
+        <a href="Week2.html">WEEK2 RESPONSE</a>
+        <a href="Week4.html">Ideation</a>
+        <a href="Week5.html">Recreation</a>
+        <a href="API Practice.html">API Practice</a>
+    </div>
+
+	<h2>Recipe Search</h2>
+    
+    <input type="text" id="searchInput" placeholder="Search for recipes">
+    <button onclick="searchRecipes()">Search</button>
+    <div id="results"></div>
+
+
+    <script>
+    const apiKey = '9525f687e2cbb653638b026bb968439c';
+    const apiEndpoint = 'https://api.edamam.com/search';
+    
+    function searchRecipes() {
+        const searchInput = document.getElementById('searchInput').value;
+        const resultsContainer = document.getElementById('results');
+        resultsContainer.innerHTML = ''; // Clear previous results
+    
+        fetch(`${apiEndpoint}?q=${searchInput}&app_id=693c18f6&app_key=${apiKey}`)
+            .then(response => response.json())
+            .then(data => {
+                data.hits.forEach(hit => {
+                    const recipe = hit.recipe;
+                    const recipeElement = document.createElement('div');
+                    recipeElement.innerHTML = `
+                        <h2>${recipe.label}</h2>
+                        <p>Ingredients: ${recipe.ingredientLines.join(', ')}</p>
+                        <p><a href="${recipe.url}" target="_blank">View Recipe</a></p>
+                    `;
+                    resultsContainer.appendChild(recipeElement);
+                });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+    </script>
+    
+</body>
+</html>
+
